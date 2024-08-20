@@ -1,0 +1,28 @@
+.appt-wrapper {
+  display: flex;
+  /* background-color: #f1e1d2; */
+  /* background-color: #eee7df; */
+  background-color: rgb(254, 253, 248);
+  justify-content: center;
+  padding: 0.8rem;
+  margin: 0.6rem 0rem;
+  border-radius: 1.5em;
+}
+
+.appt{
+ margin: 10px 0px;
+ padding: 0px 15px;
+ min-width: 100px;
+}
+
+.location{
+  font-weight: bold;
+}
+
+.deleteBtn{
+  margin-left: 50px;
+ padding: 10px;
+ font-size: 1.2rem;
+ background-color: rgb(252, 227, 224);
+ border-radius: 10px;
+}

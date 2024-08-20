@@ -1,0 +1,31 @@
+.add-bar{
+    display: flex;
+    gap: 20px;
+    background-color: #f8f4f0;
+    max-height: 50px;
+    padding: 10px;
+    border: 1px #ebb11e;;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    margin: 50px 0px;
+}
+
+.add-appt-btn{
+ background-color: #459381;
+ color: white;
+ font-weight: 600;
+  border: 1px solid rgba(27, 31, 35, 0.15);
+  border-radius: 18px;
+  font-size: 14px;
+  padding: 0px 20px;
+
+}
+
+.add-appt-btn:hover {
+    background-color: #52a28f;
+    transition-duration: 0.1s;
+  }
+  
+/*
+box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+*/

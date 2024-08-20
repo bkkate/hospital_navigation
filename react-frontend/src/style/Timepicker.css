@@ -1,0 +1,27 @@
+.time-picker {
+  display: flex;
+  align-items: center;
+  padding: 8px 10px;
+  background: #f3f3f3;
+  border-radius: 6px;
+}
+
+.time-picker select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+  border: 1px solid #dddddd;
+  border-radius: 6px;
+  padding: 10px 12px;
+  cursor: pointer;
+}
+
+.time-picker option {
+  text-align: center;
+}
+
+.hour,
+.min {
+  padding: 5px;
+}
