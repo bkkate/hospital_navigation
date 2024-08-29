@@ -7,17 +7,18 @@ DECLARE
     preadmitSign VARCHAR := 'Look for the office door with "Preadmission Clinic" written in large letters.';
 BEGIN
 
-    INSERT INTO location (location_id, location_name) VALUES ( 1, 'Jefferson Tower');
-    INSERT INTO location (location_id, location_name) VALUES ( 2, 'Preadmission Clinic');
-    INSERT INTO location (location_id, location_name) VALUES ( 3, 'Main Lobby');
-    INSERT INTO location (location_id, location_name) VALUES ( 4, 'West Tower');
+    INSERT INTO location (main_location_id, main_location_name) VALUES ( 1, 'Jefferson Tower');
+    INSERT INTO location (main_location_id, main_location_name) VALUES ( 2, 'Preadmission Clinic');
+    INSERT INTO location (main_location_id, main_location_name) VALUES ( 3, 'Main Lobby');
+    INSERT INTO location (main_location_id, main_location_name) VALUES ( 4, 'West Tower');
 
-    INSERT INTO imaging (appointment_type, appointment_name, location_id, floor, suite) VALUES (1, 'X-ray', 3, 'B', null);
-    INSERT INTO imaging (appointment_type, appointment_name, location_id, floor, suite) VALUES (2, 'CT', 3, 'A', null);
-    INSERT INTO imaging (appointment_type, appointment_name, location_id, floor, suite) VALUES (3, 'Registration', 3, '1st', 'Room 159c');
-    INSERT INTO imaging (appointment_type, appointment_name, location_id, floor, suite) VALUES (4, 'Doppler (Swedish)', 4, '4th', null);INSERT INTO imaging (appointment_type, appointment_name, location_id, floor, suite) VALUES (5, 'Doppler (Pacific Vasc)', 1, '2nd', 'Suite 201');
-    INSERT INTO imaging (appointment_type, appointment_name, location_id, floor, suite) VALUES (6, 'Teaching', 1, '1st', 'Suite 110');
-    INSERT INTO imaging (appointment_type, appointment_name, location_id, floor, suite) VALUES (7, 'Update H&P', 1, '1st', 'Suite 110');
+    INSERT INTO imaging (appointment_type, appointment_name, main_location_id, floor, suite) VALUES (1, 'X-ray', 3, 'B', null);
+    INSERT INTO imaging (appointment_type, appointment_name, main_location_id, floor, suite) VALUES (2, 'CT', 3, 'A', null);
+    INSERT INTO imaging (appointment_type, appointment_name, main_location_id, floor, suite) VALUES (3, 'Registration', 3, '1st', 'Room 159c');
+    INSERT INTO imaging (appointment_type, appointment_name, main_location_id, floor, suite) VALUES (4, 'Doppler (Swedish)', 4, '4th', null);
+    INSERT INTO imaging (appointment_type, appointment_name, main_location_id, floor, suite) VALUES (5, 'Doppler (Pacific Vasc)', 1, '2nd', 'Suite 201');
+    INSERT INTO imaging (appointment_type, appointment_name, main_location_id, floor, suite) VALUES (6, 'Teaching', 1, '1st', 'Suite 110');
+    INSERT INTO imaging (appointment_type, appointment_name, main_location_id, floor, suite) VALUES (7, 'Update H&P', 1, '1st', 'Suite 110');
 
 
     INSERT INTO direction (start_point, end_point, instruction) VALUES (1, 2, jeffToBridge || ' ' || 'Turn right and continue walking down the hallway. The Preadmission Clinic office will be on your left. ' || preadmitSign);

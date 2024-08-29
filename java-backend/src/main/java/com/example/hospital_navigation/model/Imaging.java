@@ -7,16 +7,18 @@ public class Imaging {
     private int appointmentType;
     @JsonProperty("appointment_name")
     private String appointmentName;
-    @JsonProperty("location_id")
-    private int locationId;
+    @JsonProperty("main_location_id")
+    private int mainLocationId;
+    @JsonProperty("main_location_name")
+    private String mainLocationName;
     private String floor;
     private String suite;
 
     public Imaging() {}
-    public Imaging(int appointmentType, String appointmentName, int locationId, String floor, String suite) {
+    public Imaging(int appointmentType, String appointmentName, int mainLocationId, String floor, String suite) {
         this.appointmentType = appointmentType;
         this.appointmentName = appointmentName;
-        this.locationId = locationId;
+        this.mainLocationId = mainLocationId;
         this.floor = floor;
         this.suite = suite;
     }
@@ -25,7 +27,7 @@ public class Imaging {
 
     public String getAppointmentName() {return appointmentName;}
 
-    public int getLocationId() {return locationId;}
+    public int getMainLocationId() {return mainLocationId;}
 
     public String getFloor() {return floor;}
 
@@ -35,7 +37,7 @@ public class Imaging {
 
     public void setAppointmentName(String appointmentName) {this.appointmentName = appointmentName;}
 
-    public void setLocationId(int locationId) {this.locationId = locationId;}
+    public void setMainLocationId(int mainLocationId) {this.mainLocationId = mainLocationId;}
 
     public void setFloor(String floor) {this.floor = floor;}
 
