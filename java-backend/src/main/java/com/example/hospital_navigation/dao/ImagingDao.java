@@ -7,9 +7,9 @@ public interface ImagingDao {
     // retrieve imaging details
     Imaging getImagingDetails(int appointmentType);
 
-    // starting location to generic landmark directions logic
+    // starting location to main landmark directions logic
     String startPointToLandmark (int appointmentType);
 
-    // generic landmark to end location directions logic
-    String landmarkToEndPoint();
+    // main landmark to end/next location directions logic
+    String landmarkToEndPoint(int appointmentType);
 }

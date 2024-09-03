@@ -9,8 +9,6 @@ public class Imaging {
     private String appointmentName;
     @JsonProperty("main_location_id")
     private int mainLocationId;
-    @JsonProperty("main_location_name")
-    private String mainLocationName;
     private String floor;
     private String suite;
 

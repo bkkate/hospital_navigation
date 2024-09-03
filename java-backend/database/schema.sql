@@ -33,7 +33,7 @@ CREATE TABLE direction (
 
     CONSTRAINT PK_start_end PRIMARY KEY (start_point, end_point),
     CONSTRAINT FK_start_point FOREIGN KEY (start_point) REFERENCES location(main_location_id),
-   	CONSTRAINT FK_end_point FOREIGN KEY (end_point) REFERENCES location(location_id)
+   	CONSTRAINT FK_end_point FOREIGN KEY (end_point) REFERENCES location(main_location_id)
 );
 
 COMMIT TRANSACTION;

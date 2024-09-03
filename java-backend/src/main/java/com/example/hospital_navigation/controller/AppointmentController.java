@@ -27,7 +27,7 @@ public class AppointmentController {
     }
 
     // delete appointment by schedulerId
-    @DeleteMapping(path="/delete/{schedulerId")
+    @DeleteMapping(path="/delete/{schedulerId}")
     public void deleteAppointment (@PathVariable int schedulerId) {
         apptDao.deleteAppointmentById(schedulerId);
     }
