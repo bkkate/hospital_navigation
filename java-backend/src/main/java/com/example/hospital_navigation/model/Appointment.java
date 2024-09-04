@@ -19,16 +19,10 @@ public class Appointment {
         this.appointmentType = appointmentType;
         this.appointmentTime = appointmentTime;
     }
-
     public int getSchedulerId() { return schedulerId; }
-
     public int getAppointmentType() { return appointmentType; }
-
     public Time getAppointmentTime() { return appointmentTime; }
-
     public void setSchedulerId(int schedulerId) { this.schedulerId = schedulerId; }
-
     public void setAppointmentType(int appointmentType) { this.appointmentType = appointmentType; }
-
     public void setAppointmentTime(Time appointmentTime) { this.appointmentTime = appointmentTime; }
 }

@@ -22,16 +22,16 @@ BEGIN
     INSERT INTO imaging (appointment_type, appointment_name, main_location_id, floor, suite) VALUES (7, 'Update H&P', 1, '1st', 'Suite 110');
 
 
-    INSERT INTO direction (start_point, end_point, instruction) VALUES (1, 2, jeffToBridge || ' ' || 'Turn right and continue walking down the hallway. The Preadmission Clinic office will be on your left. ' || preadmitSign + ".");
-    INSERT INTO direction (start_point, end_point, instruction) VALUES (1, 3, jeffToBridge || ' ' || bridgeToMain);
-    INSERT INTO direction (start_point, end_point, instruction) VALUES (1, 4, jeffToBridge || ' ' || bridgeToMain || mainToWest);
-    INSERT INTO direction (start_point, end_point, instruction) VALUES (4, 1, 'Walk towards Starbucks and turn right when you reach it. Continue straight past the main lobby and down the hallway until you reach the intersection. ' || intersectionToJeff + ".");
-    INSERT INTO direction (start_point, end_point, instruction) VALUES (3, 1, 'From the main lobby area, turn right and walk down the hallway until you hit the intersection/sky bridge. ' || intersectionToJeff + ".");
-    INSERT INTO direction (start_point, end_point, instruction) VALUES (2, 1, 'As you exit the office door, turn right and walk straight. ' || intersectionToJeff + ".");
-    INSERT INTO direction (start_point, end_point, instruction) VALUES (2, 3, preadmitToMain + ".");
-    INSERT INTO direction (start_point, end_point, instruction) VALUES (2, 4, preadmitToMain || ' ' || mainToWest + ".");
-    INSERT INTO direction (start_point, end_point, instruction) VALUES (4, 2, 'Walk towards Starbucks and turn right when you reach it. Continue straight past the main lobby and as you walk down the hallway, the Preadmission Clinic office will be on your right. ' || preadmitSign + ".");
+    INSERT INTO direction (start_point, end_point, instruction) VALUES (1, 2, jeffToBridge || ' ' || 'Turn right and continue walking down the hallway. The Preadmission Clinic office will be on your left. ' || preadmitSign || '.');
+    INSERT INTO direction (start_point, end_point, instruction) VALUES (1, 3, jeffToBridge || ' ' || bridgeToMain || '.');
+    INSERT INTO direction (start_point, end_point, instruction) VALUES (1, 4, jeffToBridge || ' ' || bridgeToMain || mainToWest || '.');
+    INSERT INTO direction (start_point, end_point, instruction) VALUES (4, 1, 'Walk towards Starbucks and turn right when you reach it. Continue straight past the main lobby and down the hallway until you reach the intersection. ' || intersectionToJeff || '.');
+    INSERT INTO direction (start_point, end_point, instruction) VALUES (3, 1, 'From the main lobby area, turn right and walk down the hallway until you hit the intersection/sky bridge. ' || intersectionToJeff || '.');
+    INSERT INTO direction (start_point, end_point, instruction) VALUES (2, 1, 'As you exit the office door, turn right and walk straight. ' || intersectionToJeff || '.');
+    INSERT INTO direction (start_point, end_point, instruction) VALUES (2, 3, preadmitToMain || '.');
+    INSERT INTO direction (start_point, end_point, instruction) VALUES (2, 4, preadmitToMain || ' ' || mainToWest || '.');
+    INSERT INTO direction (start_point, end_point, instruction) VALUES (4, 2, 'Walk towards Starbucks and turn right when you reach it. Continue straight past the main lobby and as you walk down the hallway, the Preadmission Clinic office will be on your right. ' || preadmitSign || '.');
     INSERT INTO direction (start_point, end_point, instruction) VALUES (4, 3, 'Walk towards Starbucks. Once you see Starbucks, the main lobby/waiting area will be on your right.');
-    INSERT INTO direction (start_point, end_point, instruction) VALUES (3, 2, 'From the main lobby area, turn right and walk a short distance down the hallway. The Preadmission Clinic office will be on your right. ' || preadmitSign + ".");
+    INSERT INTO direction (start_point, end_point, instruction) VALUES (3, 2, 'From the main lobby area, turn right and walk a short distance down the hallway. The Preadmission Clinic office will be on your right. ' || preadmitSign || '.');
 
 END $$;

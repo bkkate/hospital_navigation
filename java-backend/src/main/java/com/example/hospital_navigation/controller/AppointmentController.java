@@ -26,10 +26,15 @@ public class AppointmentController {
         return apptDao.addAppointmentsById(schedulerId, newApptList);
     }
 
-    // delete appointment by schedulerId
+    // delete all appointments by schedulerId
     @DeleteMapping(path="/delete/{schedulerId}")
-    public void deleteAppointment (@PathVariable int schedulerId) {
-        apptDao.deleteAppointmentById(schedulerId);
+    public void deleteAppointments (@PathVariable int schedulerId) {
+        apptDao.deleteAppointmentsById(schedulerId);
     }
 
+    // delete specified appointment of a scheduler
+    @DeleteMapping(path="/delete/{schedulerId}/{appointmentType}")
+    public void deleteSpecificAppointment (@PathVariable int schedulerId, @PathVariable int appointmentType) {
+        apptDao.deleteAppointmentByIdAndType(schedulerId, appointmentType);
+    }
 }

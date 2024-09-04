@@ -12,7 +12,6 @@ import java.util.List;
 @Component
 public class JdbcAppointmentDao implements AppointmentDao {
     private final JdbcTemplate jdbcTemplate;
-
     public JdbcAppointmentDao(JdbcTemplate jdbcTemplate) {this.jdbcTemplate = jdbcTemplate;}
     @Override
     public List<Appointment> getAppointmentsById (int schedulerId) {
@@ -30,22 +29,24 @@ public class JdbcAppointmentDao implements AppointmentDao {
 
     @Override
     public List<Appointment> addAppointmentsById (int schedulerId, List<Appointment> apptsToAdd) {
-
         String sql = "INSERT INTO appointment (scheduler_id, appointment_type, appointment_time) "
-                + "VALUES(?, ?, ?)";
+                + "VALUES(?, ?, ?);";
 
         for(Appointment appt: apptsToAdd) {
             jdbcTemplate.update(sql, appt.getSchedulerId(), appt.getAppointmentType(), appt.getAppointmentTime());
         }
-
         return getAppointmentsById(schedulerId);
     }
     @Override
-    public void deleteAppointmentById (int schedulerId) {
-        String sql = "DELETE FROM appointment WHERE scheduler_id=?";
-        jdbcTemplate.update(sql);
+    public void deleteAppointmentsById (int schedulerId) {
+        String sql = "DELETE FROM appointment WHERE scheduler_id=?;";
+        jdbcTemplate.update(sql, schedulerId);
     }
-
+    @Override
+    public void deleteAppointmentByIdAndType (int schedulerId, int appointmentType) {
+        String sql = "DELETE FROM appointment WHERE scheduler_id=? AND appointment_type=?;";
+        jdbcTemplate.update(sql, schedulerId, appointmentType);
+    }
     public Appointment mapRowSetToAppointment(SqlRowSet row) {
         Appointment appt = new Appointment();
 
@@ -55,5 +56,4 @@ public class JdbcAppointmentDao implements AppointmentDao {
 
         return appt;
     }
-
 }

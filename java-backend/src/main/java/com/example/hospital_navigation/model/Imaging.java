@@ -22,22 +22,13 @@ public class Imaging {
     }
 
     public int getAppointmentType() {return appointmentType;}
-
     public String getAppointmentName() {return appointmentName;}
-
     public int getMainLocationId() {return mainLocationId;}
-
     public String getFloor() {return floor;}
-
     public String getSuite() {return suite;}
-
     public void setAppointmentType(int appointmentType) {this.appointmentType = appointmentType;}
-
     public void setAppointmentName(String appointmentName) {this.appointmentName = appointmentName;}
-
     public void setMainLocationId(int mainLocationId) {this.mainLocationId = mainLocationId;}
-
     public void setFloor(String floor) {this.floor = floor;}
-
     public void setSuite(String suite) {this.suite = suite;}
 }

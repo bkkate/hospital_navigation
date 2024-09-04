@@ -18,10 +18,11 @@ CREATE TABLE imaging (
 );
 
 CREATE TABLE appointment (
-    user_id int PRIMARY KEY NOT NULL,
+    scheduler_id int NOT NULL,
     appointment_type int NOT NULL,
     appointment_time time,
 
+    CONSTRAINT PK_scheduler_id_appointment_type PRIMARY KEY (scheduler_id, appointment_type),
     CONSTRAINT FK_appointment_type FOREIGN KEY (appointment_type) REFERENCES imaging(appointment_type)
 );
 

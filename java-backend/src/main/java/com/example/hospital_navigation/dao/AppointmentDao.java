@@ -7,6 +7,6 @@ import java.util.List;
 public interface AppointmentDao {
     List<Appointment> getAppointmentsById (int schedulerId);
     List<Appointment> addAppointmentsById (int schedulerId, List<Appointment> apptsToAdd);
-    void deleteAppointmentById (int schedulerId);
-
+    void deleteAppointmentsById (int schedulerId);
+    void deleteAppointmentByIdAndType (int schedulerId, int appointmentType);
 }

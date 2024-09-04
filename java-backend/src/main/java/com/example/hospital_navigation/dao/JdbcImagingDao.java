@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class JdbcImagingDao implements ImagingDao {
-
     private final JdbcTemplate jdbcTemplate;
     public JdbcImagingDao(JdbcTemplate jdbcTemplate) {this.jdbcTemplate = jdbcTemplate;}
 
@@ -57,5 +56,4 @@ public class JdbcImagingDao implements ImagingDao {
         }
         return finalDirections;
     }
-
 }
