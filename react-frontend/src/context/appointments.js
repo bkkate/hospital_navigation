@@ -5,8 +5,7 @@ const AppointmentContext = createContext();
 
 function Provider({ children }) {
   const [appts, setAppts] = useState([]);
-
-  const uniqueId = uuid4();
+  const [id, setId] = useState(0);
 
   const addAppt = (newAppt) => {
     // newAppt will be an object passed as user clicks on "add appt" button
@@ -22,11 +21,14 @@ function Provider({ children }) {
     setAppts(newApptList);
   };
 
+  const updateSchedulerId =(id) => setId(id);
+
   const valueToShare = {
     appts,
     addAppt,
     deleteAppt,
-    uniqueId,
+    id,
+    updateSchedulerId
   };
 
   return (

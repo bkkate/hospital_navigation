@@ -8,7 +8,7 @@ CREATE TABLE location (
 
 );
 CREATE TABLE imaging (
-    appointment_type SERIAL PRIMARY KEY,
+    appointment_type PRIMARY KEY,
     appointment_name varchar(25),
     main_location_id int,
     floor varchar(5) NOT NULL,
@@ -18,7 +18,7 @@ CREATE TABLE imaging (
 );
 
 CREATE TABLE appointment (
-    scheduler_id int NOT NULL,
+    scheduler_id int SERIAL NOT NULL,
     appointment_type int NOT NULL,
     appointment_time time,
 
