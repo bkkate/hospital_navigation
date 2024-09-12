@@ -13,6 +13,16 @@ import java.util.List;
 public class JdbcAppointmentDao implements AppointmentDao {
     private final JdbcTemplate jdbcTemplate;
     public JdbcAppointmentDao(JdbcTemplate jdbcTemplate) {this.jdbcTemplate = jdbcTemplate;}
+
+    // manually incrementing serial number logic
+    private Integer createSchedulerId() {
+        String queryForIdExistence = "SELECT MAX(scheduler_id) FROM appointment";
+        Integer maxId = jdbcTemplate.queryForObject(queryForIdExistence, Integer.class);
+
+        // if there's no id returned (no row in database existing), return null; else, increment the max number by 1
+        return maxId == null ? 1 : maxId+1;
+    }
+
     @Override
     public List<Appointment> getAppointmentsById (int schedulerId) {
         List<Appointment> appointments = new ArrayList<>();
@@ -28,15 +38,35 @@ public class JdbcAppointmentDao implements AppointmentDao {
     }
 
     @Override
-    public List<Appointment> addAppointmentsById (int schedulerId, List<Appointment> apptsToAdd) {
-        String sql = "INSERT INTO appointment (scheduler_id, appointment_type, appointment_time) "
-                + "VALUES(?, ?, ?);";
+    public List<Appointment> addAppointments (List<Appointment> apptsToAdd) {
+        // returns either -1 or a newly generated (incremented) number
+        int schedulerId = createSchedulerId();
 
+        String insertWithIdSql = "INSERT INTO appointment (scheduler_id, appointment_type, appointment_time) "
+                + "VALUES(?, ?, ?);";
         for(Appointment appt: apptsToAdd) {
-            jdbcTemplate.update(sql, appt.getSchedulerId(), appt.getAppointmentType(), appt.getAppointmentTime());
+            jdbcTemplate.update(insertWithIdSql, schedulerId, appt.getAppointmentType(), appt.getAppointmentTime());
         }
         return getAppointmentsById(schedulerId);
     }
+
+//    @Override
+//    public List<Appointment> addAppointments (List<Appointment> apptsToAdd) {
+//        // First, create a serial scheduler Id unique for these appointments using the first appt in the list
+//        String createSchedulerIdSql = "INSERT INTO appointment (appointment_type, appointment_time) "
+//                + "VALUES(?, ?) RETURNING scheduler_id;";
+//
+//        int schedulerId = jdbcTemplate.queryForObject(createSchedulerIdSql, Integer.class, apptsToAdd.get(0).getAppointmentType(), apptsToAdd.get(0).getAppointmentTime());
+//
+//        // using the schedulerId created/retrieved, add rest of appointments
+//        String insertWithIdSql = "INSERT INTO appointment (scheduler_id, appointment_type, appointment_time) "
+//                + "VALUES(?, ?, ?);";
+//        for(Appointment appt: apptsToAdd) {
+//            jdbcTemplate.update(insertWithIdSql, schedulerId, appt.getAppointmentType(), appt.getAppointmentTime());
+//        }
+//
+//        return getAppointmentsById(schedulerId);
+//    }
     @Override
     public void deleteAppointmentsById (int schedulerId) {
         String sql = "DELETE FROM appointment WHERE scheduler_id=?;";
