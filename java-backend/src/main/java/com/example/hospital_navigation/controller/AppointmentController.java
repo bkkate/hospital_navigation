@@ -20,12 +20,6 @@ public class AppointmentController {
         return apptDao.getAppointmentsById(schedulerId);
     }
 
-//    // add list of appointments by schedulerId
-//    @PostMapping(path="/add/{schedulerId}")
-//    public List<Appointment> addNewAppointments (@PathVariable int schedulerId, @RequestBody List<Appointment> newApptList) {
-//        return apptDao.addAppointmentsById(schedulerId, newApptList);
-//    }
-
     // add appointment(s)
     @PostMapping(path="/add")
     public List<Appointment> addNewAppointments (@RequestBody List<Appointment> newApptList) {

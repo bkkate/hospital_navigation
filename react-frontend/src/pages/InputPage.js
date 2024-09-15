@@ -4,17 +4,18 @@ import { useNavigate } from "react-router-dom";
 import AppointmentContext from "../context/appointments.js";
 import AppointmentItem from "../components/AppointmentItem.js";
 import "../style/InputPage.css";
+import { addNewAppointments } from "../service/AxiosService.js";
 
 const InputPage = () => {
-  const { appts } = useContext(AppointmentContext);
+  const { apptsToAdd, updatedApptsFromDB, updateSchedulerId } = useContext(AppointmentContext);
   const navigate = useNavigate();
   const [isMultipleAppts, setIsMultipleAppts] = useState(false);
 
   useEffect(() => {
-    setIsMultipleAppts(appts.length>0); // set isMultipleAppts to true if there's 1 or more appts 
-  }, [appts]);
+    setIsMultipleAppts(apptsToAdd.length > 0); // set isMultipleAppts to true if there's 1 or more appts
+  }, [apptsToAdd]);
 
-  const listAppt = appts.map((appt, index) => {
+  const listAppt = apptsToAdd.map((appt, index) => {
     return (
       <AppointmentItem
         key={index}
@@ -24,9 +25,15 @@ const InputPage = () => {
     );
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // TODO: axios for submitting details.
+    // submit list of appointments, then update retrieved (saved) appts & newly created id in context
+    const response = await addNewAppointments(apptsToAdd);
+    const savedAppts = response.data;
+    updatedApptsFromDB(savedAppts);
+
+    const schedulerId = savedAppts[0].scheduler_id;
+    updateSchedulerId(schedulerId);
 
     // navigate the LinksPage page
     navigate("/links");
@@ -43,7 +50,7 @@ const InputPage = () => {
     <div className="wrapper">
       <AppointmentBar />
       <div className="appt-lists">{listAppt} </div>
-      {button} 
+      {button}
     </div>
   );
 };

@@ -9,11 +9,11 @@ const DropdownContent = forwardRef((props, ref) => {
   const locations = [
     "Update H&P",
     "Teaching",
-    "Dopplers",
+    "Dopplers (Swedish)",
+    "Dopplers (Pac Vas)",
     "X-ray",
-    "CT",  "Echo",
-    "PFTs",
-  
+    "CT",
+    "Labs/EKG",
   ];
   const items = locations.map((item, index) => {
     return (

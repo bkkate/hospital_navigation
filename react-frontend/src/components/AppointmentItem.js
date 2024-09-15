@@ -7,7 +7,7 @@ import { useContext } from "react";
 // *parent component is the InputPage
 const AppointmentItem = ({ apptData, idx }) => {
   // format time from military to a more readable form
-  const militaryFormat = apptData.time;
+  const militaryFormat = apptData.appointment_time;
   let hour = militaryFormat.slice(0, 2);
   const min = militaryFormat.slice(3, 5);
   let period = "AM";

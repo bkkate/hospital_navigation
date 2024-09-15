@@ -6,7 +6,7 @@ import { useContext, useState } from "react";
 import AppointmentContext from "../context/appointments.js";
 
 const AppointmentBar = () => {
-  const { appts, addAppt } = useContext(AppointmentContext);
+  const { apptsToAdd, addAppt } = useContext(AppointmentContext);
   const [locationToUpload, setLocationToUpload] = useState("");
   const [timeToUpload, setTimeToUpload] = useState("");
 
@@ -39,15 +39,43 @@ const AppointmentBar = () => {
   const handleAdd = (event) => {
     event.preventDefault();
 
+    let appointmentType;
+    switch (locationToUpload) {
+      case "X-ray":
+        appointmentType = 1;
+        break;
+      case "CT":
+        appointmentType = 2;
+        break;
+      case "Labs/EKG":
+        appointmentType = 3;
+        break;
+      case "Dopplers (Swedish)":
+        appointmentType = 4;
+        break;
+      case "Dopplers (Pac Vas)":
+        appointmentType = 5;
+        break;
+      case "Teaching":
+        appointmentType = 6;
+        break;
+      case "Update H&P":
+        appointmentType = 7;
+        break;
+      default:
+        appointmentType = 0;
+    }
+
     //use context's addApt function to pass in a new appt object with all the info
     const newAppt = {
       location: locationToUpload,
-      time: timeToUpload,
+      appointment_type: appointmentType,
+      appointment_time: timeToUpload,
     };
 
     addAppt(newAppt);
 
-    console.log(appts);
+    // console.log(apptsToAdd);
   };
 
   return (
