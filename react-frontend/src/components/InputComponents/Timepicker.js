@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import "../style/Timepicker.css";
+import "../../style/Timepicker.css";
 
 const Timepicker = ({ onTimeChange }) => {
   const [hour, setHour] = useState(8);

@@ -1,7 +1,7 @@
 import React from "react";
 import { BiTrash } from "react-icons/bi";
-import "../style/AppointmentItem.css";
-import AppointmentContext from "../context/appointments.js";
+import "../../style/AppointmentItem.css";
+import AppointmentContext from "../../context/appointments.js";
 import { useContext } from "react";
 
 // *parent component is the InputPage

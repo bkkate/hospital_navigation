@@ -1,5 +1,5 @@
 import React from "react";
-import "../style/DropdownItem.css";
+import "../../style/DropdownItem.css";
 
 // DropdownContent is the parent component
 const DropdownItem = ({ children, updateOnClick }) => {

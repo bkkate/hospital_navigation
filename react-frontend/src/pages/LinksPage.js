@@ -7,12 +7,12 @@ import AppointmentContext from "../context/appointments.js";
 
 const LinksPage = () => {
   // as user submits info from InputPage -> saved in database and creates/returns a newly created unique schedulerId -> used for dynamic link
-  const { id } = useContext(AppointmentContext);
+  const { schedulerId } = useContext(AppointmentContext);
 
   return (
     <div>
       <Link to="/"> Submit New Set of Appointments</Link>
-      <Link to={`/display/${id}`}>Go to Appointment Details </Link>
+      <Link to={`/display/${schedulerId}`}>Go to Appointment Details </Link>
       <img src={map} alt="hospital map" />
     </div>
   );

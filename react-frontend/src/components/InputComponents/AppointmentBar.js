@@ -1,9 +1,9 @@
 import React from "react";
 import Dropdown from "./Dropdown.js";
 import Timepicker from "./Timepicker.js";
-import "../style/AppointmentBar.css";
+import "../../style/AppointmentBar.css";
 import { useContext, useState } from "react";
-import AppointmentContext from "../context/appointments.js";
+import AppointmentContext from "../../context/appointments.js";
 
 const AppointmentBar = () => {
   const { apptsToAdd, addAppt } = useContext(AppointmentContext);
@@ -18,12 +18,6 @@ const AppointmentBar = () => {
   // receive the selected time from TimePicker child component, then update state at this component
   // data types: all hour, min, period are strings
   const receiveSelectTime = (hour, min, period) => {
-    // console.log(
-    //   "data received from timePicker, on Appointment Bar: ",
-    //   hour,
-    //   min,
-    //   period
-    // );
     if (period === "PM" && hour < 12) {
       hour = parseInt(hour, 10) + 12;
     }

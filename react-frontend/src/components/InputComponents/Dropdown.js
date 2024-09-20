@@ -2,7 +2,7 @@ import React from "react";
 import DropdownButton from "./DropdownButton";
 import DropdownContent from "./DropdownContent";
 import DropdownItem from "./DropdownItem";
-import "../style/Dropdown.css";
+import "../../style/Dropdown.css";
 import { useState, useEffect, useRef } from "react";
 
 // content: list rendering of DropdownItem

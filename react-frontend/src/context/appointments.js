@@ -8,10 +8,10 @@ function Provider({ children }) {
   const [apptsToAdd, setApptsToAdd] = useState([]);
 
   // savedAppts is retrieved appointments that were saved in database
-  const [savedAppts, setSavedAppts] = useState([]);
-  const [id, setId] = useState(0);
+  const [apptsFromDB, setApptsFromDB] = useState([]);
+  const [schedulerId, setSchedulerId] = useState(0);
 
-// appts to submit
+  // appts to submit
   const addAppt = (newAppt) => {
     // newAppt will be an object passed as user clicks on "add appt" button
     const updatedAppts = [...apptsToAdd, newAppt];
@@ -26,20 +26,21 @@ function Provider({ children }) {
     setApptsToAdd(newApptList);
   };
 
- // retrieving appts from database (saved for user/scheduler)
-  const updatedApptsFromDB = (appts) => {
-    setSavedAppts(appts);
+  // retrieving appts from database (saved for user/scheduler)
+  const updateApptsFromDB = (appts) => {
+    setApptsFromDB(appts);
   };
 
-  const updateSchedulerId = (id) => setId(id);
+  const updateSchedulerId = (id) => setSchedulerId(id);
 
   const valueToShare = {
     apptsToAdd,
     addAppt,
     deleteAppt,
-    id,
+    schedulerId,
     updateSchedulerId,
-    updatedApptsFromDB,
+    updateApptsFromDB,
+    apptsFromDB,
   };
 
   return (

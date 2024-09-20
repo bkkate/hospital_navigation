@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
-import "../style/DropdownButton.css";
+import "../../style/DropdownButton.css";
 
 // Wrapping around forwardRef as this is a component, not an html element, to use it as a ref
 const DropdownButton = forwardRef((props, ref) => {
