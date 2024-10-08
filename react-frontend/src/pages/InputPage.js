@@ -7,8 +7,7 @@ import "../style/InputPage.css";
 import { addNewAppointments } from "../service/AxiosService.js";
 
 const InputPage = () => {
-  const { apptsToAdd, updateSchedulerId } =
-    useContext(AppointmentContext);
+  const { apptsToAdd, updateSchedulerId } = useContext(AppointmentContext);
   const navigate = useNavigate();
   const [isMultipleAppts, setIsMultipleAppts] = useState(false);
 
@@ -31,11 +30,13 @@ const InputPage = () => {
     // submit list of appointments, then update retrieved (saved) appts & newly created id in context
     try {
       const response = await addNewAppointments(apptsToAdd);
+      // for id parameter in the link to be directed to
       updateSchedulerId(response.data[0].scheduler_id);
 
-    } catch {
+    } catch (err) {
       // TODO: pop up with error message saying that it didn't do through & Button to reload page
       window.location.reload();
+      console.error(err);
     }
 
     // navigate the LinksPage page
