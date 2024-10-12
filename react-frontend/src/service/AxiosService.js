@@ -22,10 +22,15 @@ const getDirections = (startPoint, endPoint) => {
   return http.get(`/directions/${startPoint}/${endPoint}`);
 };
 
+const getImagingDetails = (apptType) => {
+  return http.get(`/imaging/${apptType}`);
+};
+
 export {
   getAllAppointmentsById,
   addNewAppointments,
   deleteAllAppointmentsById,
   deleteSpecificAppointment,
   getDirections,
+  getImagingDetails,
 };

@@ -5,8 +5,12 @@ import AppointmentContext from "../../context/appointments";
 const LocationSetter = ({ apptData }) => {
   // next stop appointment list (that excludes the start point location set by user)
   const [nextApptsList, setNextApptsList] = useState(apptData);
-  const [startPoint, setStartPoint] = useState(apptData[0].location);
-  const [nextPoint, setNextPoint] = useState(apptData[1].location);
+  const [startPoint, setStartPoint] = useState(
+    apptData[0].imagingData.appointmentName
+  );
+  const [nextPoint, setNextPoint] = useState(
+    apptData[1].imagingData.appointmentName
+  );
 
   // FIXME: fix list being undefined & how to handle in that case
   const locationOptions = (list) => {
@@ -16,9 +20,13 @@ const LocationSetter = ({ apptData }) => {
       return <option> this is an error </option>;
     } else {
       return list.map((appt, index) => {
+        const imagingData = appt.imagingData;
         return (
-          <option key={appt.appointment_type} value={appt.location}>
-            {appt.location}
+          <option
+            key={imagingData.appointmentType}
+            value={imagingData.appointmentName}
+          >
+            {imagingData.appointmentName}
           </option>
         );
       });
@@ -35,7 +43,7 @@ const LocationSetter = ({ apptData }) => {
   const onStartContentChange = (e) => {
     const startLocation = e.target.value;
     const nextLocationOptions = apptData.filter(
-      (appt) => appt.location !== startLocation
+      (appt) => appt.apptName !== startLocation
     );
     setNextApptsList(nextLocationOptions);
     setStartPoint(startLocation);
