@@ -7,13 +7,20 @@ import {
   getImagingDetails,
 } from "../service/AxiosService";
 import DisplayItem from "../components/DisplayComponents/DisplayItem";
+import { getDirections } from "../service/AxiosService.js";
+import Directions from "../components/DisplayComponents/Directions.js";
 
 const DisplayPage = () => {
   const { id } = useParams();
   const { updateApptsFromDB, updateSchedulerId } =
     useContext(AppointmentContext);
+
   const [apptsFromDB, setApptsFromDB] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  // state to track whether user pressed the Go! button to get directions
+  const [showDirections, setShowDirections] = useState(false);
+  const [directions, setDirections] = useState("");
 
   // FIXME: state not updating context in time for data to be used in child component LocationSetter
   useEffect(() => {
@@ -51,18 +58,31 @@ const DisplayPage = () => {
     fetchData();
   }, [id]);
 
-  // {apptsFromDB.map((appt) => {
-  //   return <DisplayItem apptData={appt} key={appt.appointment_type} />;
-  //  })}
+  const retrieveDirections = async (startPoint, nextPoint) => {
+    const response = await getDirections(startPoint, nextPoint);
+    const instructionsStr = response.data;
+    console.log(instructionsStr);
+    setShowDirections(true);
+    setDirections(instructionsStr);
+  };
 
-  return (loading || apptsFromDB.length<=0) ? (
+  // check if still loading (loading == true) or apptsFromDB has not been updated
+  return loading || apptsFromDB.length <= 0 ? (
     <div> Loading Data... </div>
   ) : (
     <div>
-      <LocationSetter apptData={apptsFromDB} />
+      <LocationSetter
+        apptData={apptsFromDB}
+        retrieveDirections={retrieveDirections}
+      />
+
       {apptsFromDB.map((appt) => {
         return <DisplayItem apptData={appt} key={appt.appointment_type} />;
       })}
+
+      {(showDirections || directions.length > 0) && (
+        <Directions instructions={directions} />
+      )}
     </div>
   );
 };
