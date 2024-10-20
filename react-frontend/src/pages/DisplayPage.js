@@ -29,36 +29,11 @@ const DisplayPage = () => {
            adding 'imagingData' property for all location details (e.g. 'Jefferson Tower', 'Suite 202', etc )    */
         const updatedData = await Promise.all(
           response.data.map(async (appt) => {
-            // let apptName;
-            // switch (appt.appointment_type) {
-            //   case 1:
-            //     apptName = "X-ray";
-            //     break;
-            //   case 2:
-            //     apptName = "CT";
-            //     break;
-            //   case 3:
-            //     apptName = "Labs/EKG";
-            //     break;
-            //   case 4:
-            //     apptName = "Dopplers (Swedish)";
-            //     break;
-            //   case 5:
-            //     apptName = "Dopplers (Pac Vas)";
-            //     break;
-            //   case 6:
-            //     apptName = "Teaching";
-            //     break;
-            //   case 7:
-            //     apptName = "Update H&P";
-            //     break;
-            //   default:
-            //     apptName = "None to Display";
-            // }
-
-            const imagingResponse = await getImagingDetails(appt.appointment_type); // returns Imaging object with location details
+            const imagingResponse = await getImagingDetails(
+              appt.appointment_type
+            ); // returns Imaging object with location details
             const imagingData = imagingResponse.data;
-            
+
             return { ...appt, imagingData };
           })
         );
@@ -76,26 +51,18 @@ const DisplayPage = () => {
     fetchData();
   }, [id]);
 
-  // const appointmentsList = apptsFromDB.map((appt) => {
+  // {apptsFromDB.map((appt) => {
   //   return <DisplayItem apptData={appt} key={appt.appointment_type} />;
-  // });
+  //  })}
 
-
-  return (
+  return (loading || apptsFromDB.length<=0) ? (
+    <div> Loading Data... </div>
+  ) : (
     <div>
-      {loading ? (
-        <div> Loading Data... </div>
-      ) : (
-        <LocationSetter apptData={apptsFromDB} />
-      )}
-
-      {/* {apptsFromDB.length > 0 ? (
-        apptsFromDB.map((appt) => (
-          <DisplayItem key={appt.appointment_type} apptData={appt} />
-        ))
-      ) : (
-        <div>No appointments to display</div> // Render a fallback if no data is available
-      )} */}
+      <LocationSetter apptData={apptsFromDB} />
+      {apptsFromDB.map((appt) => {
+        return <DisplayItem apptData={appt} key={appt.appointment_type} />;
+      })}
     </div>
   );
 };
